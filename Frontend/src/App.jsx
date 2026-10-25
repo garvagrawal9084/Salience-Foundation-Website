@@ -15,6 +15,7 @@ import TermsConditionsPage from './pages/TermsConditionsPage';
 import RefundPolicyPage from './pages/RefundPolicyPage';
 import ContactPage from './pages/ContactPage';
 import PartnerPage from './pages/PartnerPage';
+import JharkhandWomensLeaguePage from './pages/JharkhandWomensLeaguePage';
 
 /**
  * Synchronous Scroll-to-Top helper.
@@ -71,6 +72,8 @@ const AnimatedRoutes = () => {
         <Route path="/refunds" element={<PageTransition><RefundPolicyPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
         <Route path="/partner" element={<PageTransition><PartnerPage /></PageTransition>} />
+        <Route path="/jharkhand-womens-league" element={<PageTransition><JharkhandWomensLeaguePage /></PageTransition>} />
+        <Route path="/jwl" element={<PageTransition><JharkhandWomensLeaguePage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   );
