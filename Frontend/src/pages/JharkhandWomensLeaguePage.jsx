@@ -72,6 +72,7 @@ const JharkhandWomensLeaguePage = () => {
   const [activeLeg, setActiveLeg] = useState('All'); // 'All' | 'Leg 1' | 'Leg 2'
   const [selectedDayNumber, setSelectedDayNumber] = useState(1);
   const [activePosterModal, setActivePosterModal] = useState(null);
+  const [activeGraphicTab, setActiveGraphicTab] = useState('hero'); // 'hero' | 'teams' | 'emblem'
 
   const filteredMatchDays = JWL_MATCH_DAYS.filter((md) => {
     if (activeLeg === 'Leg 1') return md.dayNumber <= 5;
@@ -248,28 +249,80 @@ const JharkhandWomensLeaguePage = () => {
       <section className="py-24 bg-white border-b border-gray-100">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            {/* Left Column: Official Poster Preview */}
+            {/* Left Column: Official Poster / Emblem Preview with Switcher */}
             <div className="lg:col-span-5 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100 group">
+              {/* Graphic Viewer */}
+              <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-100 bg-neutral-900 group">
                 <img
-                  src={heroPosterImg}
-                  alt="Official JWL Poster"
-                  className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-500 cursor-pointer"
-                  onClick={() => setActivePosterModal(heroPosterImg)}
+                  src={
+                    activeGraphicTab === 'teams'
+                      ? teamsPosterImg
+                      : activeGraphicTab === 'emblem'
+                      ? JWL_LOGOS.emblem
+                      : heroPosterImg
+                  }
+                  alt="Official JWL Graphic"
+                  className={`w-full ${activeGraphicTab === 'emblem' ? 'h-[460px] object-contain p-6 bg-radial from-slate-900 to-black' : 'h-auto object-cover'} group-hover:scale-102 transition-transform duration-500 cursor-pointer`}
+                  onClick={() =>
+                    setActivePosterModal(
+                      activeGraphicTab === 'teams'
+                        ? teamsPosterImg
+                        : activeGraphicTab === 'emblem'
+                        ? JWL_LOGOS.emblem
+                        : heroPosterImg
+                    )
+                  }
                 />
                 <div 
-                  onClick={() => setActivePosterModal(heroPosterImg)}
+                  onClick={() =>
+                    setActivePosterModal(
+                      activeGraphicTab === 'teams'
+                        ? teamsPosterImg
+                        : activeGraphicTab === 'emblem'
+                        ? JWL_LOGOS.emblem
+                        : heroPosterImg
+                    )
+                  }
                   className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer"
                 >
                   <span className="px-4 py-2 bg-white text-brand-black text-xs font-bold rounded-lg shadow-lg">
-                    Click to Enlarge Poster
+                    Click to Enlarge Fullscreen
                   </span>
                 </div>
               </div>
-              <div className="mt-3 text-center">
-                <span className="text-xs text-brand-dark/70 italic">
-                  Official Launch Poster · Jharkhand Women's League 2026–27
-                </span>
+
+              {/* Graphic Selector Switcher */}
+              <div className="mt-4 flex items-center justify-center gap-2">
+                <button
+                  onClick={() => setActiveGraphicTab('hero')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    activeGraphicTab === 'hero'
+                      ? 'bg-brand-black text-white shadow-xs'
+                      : 'bg-gray-100 text-brand-dark hover:bg-gray-200'
+                  }`}
+                >
+                  Launch Poster
+                </button>
+                <button
+                  onClick={() => setActiveGraphicTab('teams')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    activeGraphicTab === 'teams'
+                      ? 'bg-brand-black text-white shadow-xs'
+                      : 'bg-gray-100 text-brand-dark hover:bg-gray-200'
+                  }`}
+                >
+                  Teams Poster
+                </button>
+                <button
+                  onClick={() => setActiveGraphicTab('emblem')}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    activeGraphicTab === 'emblem'
+                      ? 'bg-brand-black text-white shadow-xs'
+                      : 'bg-gray-100 text-brand-dark hover:bg-gray-200'
+                  }`}
+                >
+                  Official Emblem
+                </button>
               </div>
             </div>
 
