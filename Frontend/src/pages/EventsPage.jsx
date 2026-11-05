@@ -225,6 +225,17 @@ const EventsPage = () => {
                   <div className="p-6">
                     <h4 className="font-heading font-bold text-brand-black text-lg mb-2">{ev.title}</h4>
                     <p className="text-xs text-brand-dark/90 font-light leading-relaxed mb-4">{ev.desc}</p>
+                    {ev.link && (
+                      <Link
+                        to={ev.link}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-black hover:text-yellow-600 transition-colors pt-1"
+                      >
+                        <span>View League Details & Fixtures</span>
+                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    )}
                   </div>
                   <div className="bg-gray-50 border-t border-gray-100 px-6 py-4 flex justify-between items-center text-[10px] text-gray-500 font-semibold uppercase tracking-wider">
                     <span>{ev.date}</span>

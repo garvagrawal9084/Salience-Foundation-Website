@@ -38,7 +38,9 @@ const Navbar = () => {
     '/terms-conditions',
     '/refund-policy',
     '/refunds',
-    '/join-us'
+    '/join-us',
+    '/jharkhand-womens-league',
+    '/jwl'
   ];
   const isScrollLinkedPage = scrollLinkedPaths.includes(location.pathname);
 
